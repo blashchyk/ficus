@@ -14,10 +14,14 @@ class CreateProductTypesTable extends Migration
     public function up()
     {
         Schema::create('product_types', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name');
             $table->timestamps();
         });
+        Artisan::call('db:seed', [
+            '--class' => 'ProductTypesSeeder',
+            '--force' => true,
+        ]);
     }
 
     /**
