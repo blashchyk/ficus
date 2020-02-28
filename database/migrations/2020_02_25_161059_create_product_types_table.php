@@ -18,6 +18,11 @@ class CreateProductTypesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreign('type_id')
+                ->references('id')
+                ->on('product_types');
+        });
         Artisan::call('db:seed', [
             '--class' => 'ProductTypesSeeder',
             '--force' => true,

@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    phpinfo();
+Route::get('/', function (\App\Repositories\ProductRepo $repo) {
+    dd($repo->all());
 });
